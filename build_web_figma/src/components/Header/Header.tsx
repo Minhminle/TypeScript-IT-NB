@@ -96,6 +96,7 @@ const Header: React.FC = () => {
         </Typography>
         <Button
           variant="contained"
+          color="primary"
           sx={{
             fontSize: '25px',
             fontStyle: 'normal',
