@@ -46,6 +46,23 @@ const Container_Asian: React.FC = () => {
       {foods.map((food) => (
         <Grid key={food.id} item xs={6} sm={3}>
           <Card sx={{ borderRadius: "30px", width: '291px', height: '495px' }}>
+            <Box
+                sx={{
+                    backgroundColor: 'black',
+                    color: 'white',
+                    borderRadius: '50%',
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontWeight: 'bold',
+                    position:'absolute',
+                    top: '1200px'
+                }}
+                >
+                $12
+            </Box>
             <div style={{height:'325px', marginTop:'10px'}}>
                 <img
                 src={food.imageSrc}
