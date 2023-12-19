@@ -1,8 +1,7 @@
 // pages/index.tsx
 import React from 'react';
 import Head from 'next/head';
-import Header from '../src/components/Header/Header';
-import Asian from '../src/components/Container/Container_  Asian';
+import FullPage from '../src/module_Page';
 
 const Home: React.FC = () => {
   return (
@@ -11,8 +10,7 @@ const Home: React.FC = () => {
         <title>Delicious Asian</title>
         {/* Các thẻ meta khác */}
       </Head>
-      <Header />
-      <Asian />
+      <FullPage />
       {/* Các thành phần khác của trang */}
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Card, Grid, Typography } from "@mui/material";
+import { Box, Card, Stack, Typography } from "@mui/material";
 
 const foods = [
     {
@@ -42,28 +42,26 @@ const Container_Asian: React.FC = () => {
       </Box>
 
       <Box mt={4} sx={{marginTop:'75px', marginLeft:'60px', textAlign:'center'}}>
-      <Grid container spacing={-3}>
+      <Stack direction={'row'} spacing={3}>
       {foods.map((food) => (
-        <Grid key={food.id} item xs={6} sm={3}>
+        <Box key={food.id}>
           <Card sx={{ borderRadius: "30px", width: '291px', height: '495px' }}>
-            <Box
-                sx={{
-                    backgroundColor: 'black',
-                    color: 'white',
-                    borderRadius: '50%',
-                    width: '40px',
-                    height: '40px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontWeight: 'bold',
-                    position:'absolute',
-                    top: '1200px'
-                }}
-                >
-                $12
-            </Box>
-            <div style={{height:'325px', marginTop:'10px'}}>
+          <Box sx={{
+          backgroundColor: 'black',
+          color: 'white',
+          borderRadius: '50%',
+          width: '40px',
+          height: '40px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative',
+          top:'30px',
+          left:'20px',
+          fontWeight: 'bold'}}>                
+      $12
+  </Box>
+            <div style={{height:'310px', marginTop:'10px'}}>
                 <img
                 src={food.imageSrc}
                 alt={food.title}
@@ -77,9 +75,9 @@ const Container_Asian: React.FC = () => {
               {food.description}
             </Typography>
           </Card>
-        </Grid>
+        </Box>
       ))}
-    </Grid>
+    </Stack>
       </Box>
     </Box>
   );
