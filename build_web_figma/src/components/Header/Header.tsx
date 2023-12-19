@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box'; // Thêm import
 import Link from 'next/link';
 import { styled } from '@mui/system';
-import { Grid } from '@mui/material';
+import { Grid, Stack } from '@mui/material';
 
 const StyledCircle = styled('div')({
   width: '884px',
@@ -36,16 +36,11 @@ const Header: React.FC = () => {
           <Typography variant="h6" component="div" sx={{fontWeight: 600}}>
             Dhabi Restaurant
           </Typography>
-        <Grid  sx={{marginLeft: '75px', color: '#000', fontFamily: 'Inter', fontSize: '15px', fontWeight: 500}}>
-          <Link href="#">Product</Link>
-        </Grid>
-        <Grid  sx={{marginLeft: '26px', color: '#000', fontFamily: 'Inter', fontSize: '15px', fontWeight: 500}}>
-          <Link href="#">Recipe</Link>
-        </Grid>
-        <Grid  sx={{marginLeft: '30px', color: '#000', fontFamily: 'Inter', fontSize: '15px', fontWeight: 500}}>
-          <Link href="#">About</Link>
-        </Grid>
-          
+        <Stack direction={'row'} spacing={4}  sx={{marginLeft: '75px', color: '#000', fontFamily: 'Inter', fontSize: '15px', fontWeight: 500}}>
+        <Link href="#">Product</Link>
+        <Link href="#">Recipe</Link>
+        <Link href="#">About</Link>
+        </Stack>
 
           <Button sx={{position: 'relative', zIndex: 1, marginLeft: '135px', borderRadius: '10px', color: '#000',fontSize: '14px',  fontWeight: 700, background: '#DAE952', 
           '&:hover': {background: '#33691e'}}} variant="contained">
