@@ -12,16 +12,16 @@ const Container_WelcomeTo = () => {
         <img
           src="/images/5.png"
           alt="Description"
-          style={{ width: '125%', height: 'auto', position:'relative', top: '-170px', left: '20px'}}
+          style={{ width: '140%', height: 'auto', position:'relative', top: '-170px', left: '20px'}}
         />
       </Box>
 
       {/* Bên phải */}
-      <Box textAlign={'center'} sx={{width:'50%'}}>
+      <Box textAlign={'center'} sx={{width:'50%', paddingTop:'80px'}}>
         <Typography variant="h3" gutterBottom sx={{fontWeight:'bold'}}>
         Welcome to our Dhabi Restaurant
         </Typography>
-        <Typography variant="body1" paragraph sx={{width:'50%', margin:'auto'}}>
+        <Typography variant="body1" paragraph sx={{width:'60%', margin:'auto', fontSize:'20px'}}>
         food, substance consisting essentially of protein, carbohydrate, fat, and other nutrients used in the body of an organism to sustain growth and vital processes and to furnish energy. The absorption and utilization of food by the body is fundamental to nutrition and is facilitated by digestion
         </Typography>
         <Button

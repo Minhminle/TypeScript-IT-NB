@@ -5,6 +5,7 @@ import Header from './components/Header/Header';
 import Asian from './components/Container/Container_ Asian';
 import Wellcome from './components/Container/Container_WelcomeTo';
 import Chef from './components/Container/Container_Chef';
+import Cus from './components/Container/Container_Customer';
 
 const FullPage: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const FullPage: React.FC = () => {
       <Asian />
       <Wellcome />
       <Chef />
+      <Cus />
       {/* Các thành phần khác của trang */}
     </div>
   );
