@@ -1,14 +1,32 @@
-import { Box, Stack } from "@mui/material";
-import React from "react";
+// Layout.tsx
+import { Box, Switch } from "@mui/material";
+import React, { useState } from "react";
+import OnSwitchLayout from "@/src/components/OnSwitchLayout";
+import OffSwitchLayout from "@/src/components/OffSwitchLayout";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+export default function Layout({ children }: LayoutProps) {
+  const [isSwitchOn, setSwitchOn] = useState(false);
+
+  const handleSwitchToggle = () => {
+    setSwitchOn((prev) => !prev);
+  };
+
   return (
     <main>
-      <Stack textAlign={"center"}>
-        <Box>This header</Box>
-        {children}
-        <Box>This footer</Box>
-      </Stack>
+      <Box sx={{ background: "#DAE952" }}>
+        <Switch checked={isSwitchOn} onChange={handleSwitchToggle} />
+      </Box>
+      {isSwitchOn ? (
+        <OnSwitchLayout>On mode</OnSwitchLayout>
+      ) : (
+        <OffSwitchLayout>Off mode</OffSwitchLayout>
+      )}
+      {children}
+      <Box sx={{ background: "#DAE952", height: "30px" }}></Box>
     </main>
   );
 }
