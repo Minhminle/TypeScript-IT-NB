@@ -5,22 +5,9 @@ import { NextPageWithLayout } from "../_app";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import useSWR from "swr";
-import Link from "@mui/material/Link";
-
-interface User {
-  name: string;
-}
-
-interface MovieList {
-  results: Movie[];
-}
-
-interface Movie {
-  id: string;
-  title: string;
-  poster_path: string;
-  overview: string;
-}
+import Link from "next/link";
+import { MovieList } from "@/models/Movie";
+import { Movie } from "@/models/Movie";
 
 const HomeDetail: NextPageWithLayout = () => {
   const fetcher = (url: string) =>
@@ -67,17 +54,15 @@ const HomeDetail: NextPageWithLayout = () => {
                 {movie.overview}
               </Typography>
               <Link
-                href="#"
-                underline="none"
-                position={"relative"}
-                sx={{
+                href={`/detail/movie/${movie.id}`}
+                style={{
+                  position: "relative",
                   fontSize: "20px",
                   color: "#ff5722",
                   top: "20px ",
-                  "&:hover": { color: "#ffab00" },
                 }}
               >
-                Read more
+                Detail
               </Link>
             </Box>
           </Box>
