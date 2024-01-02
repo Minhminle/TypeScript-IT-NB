@@ -8,6 +8,7 @@ import Box from "@mui/material/Box"; // Thêm import
 import Link from "next/link";
 import { styled } from "@mui/system";
 import { Grid, Stack } from "@mui/material";
+import { ReactNode } from "react";
 
 const StyledCircle = styled("div")({
   width: "884px",
@@ -20,6 +21,10 @@ const StyledCircle = styled("div")({
   zIndex: 0,
   overflow: "hidden",
 });
+
+interface HeaderProps {
+  children: ReactNode;
+}
 
 const Header: React.FC<HeaderProps> = ({ children }) => {
   return (
