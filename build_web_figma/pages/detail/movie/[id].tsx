@@ -1,70 +1,60 @@
-// detail/[id].tsx
-import { GetServerSideProps, NextPage } from "next";
-import { Box, Typography } from "@mui/material";
+// pages/detail/[id].tsx
+import { useRouter } from "next/router";
+import useSWR from "swr";
 import axios from "axios";
-import Layout from "@/src/components/layout";
-import type { ReactElement } from "react";
-import type { NextPageWithLayout } from "@/pages/_app";
 import { Movie } from "@/models/Movie";
+import Layout from "@/src/components/layoutDetailMovie";
+import { Box, Stack, Typography } from "@mui/material";
+import { ReactElement } from "react";
 
-interface MovieDetail {
-  id: string;
-  title: string;
-  poster_path: string;
-  overview: string;
-}
+const MovieDetail = () => {
+  const router = useRouter();
+  const { id } = router.query;
 
-interface MovieDetailProps {
-  movieDetail: MovieDetail;
-}
+  const fetcher = (url: string) =>
+    axios.get(url).then((response) => response.data);
+  const { data, error } = useSWR<Movie>(`/movie/${id}`, fetcher);
 
-const MovieDetailPage: NextPageWithLayout<MovieDetailProps> = ({
-  movieDetail,
-}) => {
+  if (error) return <div>Error loading movie details</div>;
+  if (!data) return <div>Loading...</div>;
+
   return (
-    <Box sx={{ color: "white" }}>
-      <Typography variant="h2" sx={{ fontSize: "35px", color: "white" }}>
-        {movieDetail.title}
-      </Typography>
+    <Stack gap={4} direction={"row"}>
       <Box
         component="img"
+        src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
+        alt={data.title}
+        width={300}
         style={{
-          width: "200px",
-          height: "auto",
-          borderRadius: "4px",
+          borderRadius: "8px",
+          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
+          marginLeft: "10px",
+          padding: "10px",
         }}
-        src={`https://image.tmdb.org/t/p/w500${movieDetail.poster_path}`}
       />
-      <Typography
-        variant="body2"
-        sx={{ fontSize: "20px", marginTop: "15px", color: "white" }}
+      <Box
+        sx={{
+          borderRadius: "8px",
+          padding: "40px",
+          boxShadow: "0px 0px 20px rgba(0.5, 0.5, 0.5, 0.5)",
+        }}
       >
-        {movieDetail.overview}
-      </Typography>
-    </Box>
+        <Typography variant="h3" sx={{ marginBottom: "10px" }}>
+          {data.title}
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ fontSize: "18px", color: "#555", marginBottom: "20px" }}
+        >
+          {data.overview}
+        </Typography>
+      </Box>
+    </Stack>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id } = context.query;
-  try {
-    const response = await axios.get(`/movie/${id}`); // Replace with your actual API endpoint
-    const movieDetail: MovieDetail = response.data;
-    return {
-      props: {
-        movieDetail,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching movie details:", error);
-    return {
-      notFound: true,
-    };
-  }
-};
-
-MovieDetailPage.getLayout = function getLayout(page: ReactElement) {
+MovieDetail.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
 };
 
-export default MovieDetailPage;
+export default MovieDetail;
