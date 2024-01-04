@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-
+import { useRouter } from "next/router";
 import Layout from "@/src/components/layout";
 import { NextPageWithLayout } from "../_app";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
@@ -10,6 +10,7 @@ import { MovieList } from "@/models/Movie";
 import { Movie } from "@/models/Movie";
 
 const HomeDetail: NextPageWithLayout = () => {
+  const router = useRouter();
   const fetcher = (url: string) =>
     axios.get(url).then((response) => response.data);
   const { data, isLoading, error } = useSWR<MovieList>(
@@ -17,6 +18,9 @@ const HomeDetail: NextPageWithLayout = () => {
     fetcher
   );
   console.log(data);
+  const handleDetailClick = (movieId: string) => {
+    router.push(`/detail/movie/${movieId}`);
+  };
   return (
     <>
       <Box sx={{ color: "white" }}>Home Detail</Box>
@@ -53,17 +57,17 @@ const HomeDetail: NextPageWithLayout = () => {
               >
                 {movie.overview}
               </Typography>
-              <Link
-                href={`/detail/movie/${movie.id}`}
+              <Button
+                onClick={() => handleDetailClick(movie.id)}
                 style={{
                   position: "relative",
                   fontSize: "20px",
                   color: "#ff5722",
-                  top: "20px ",
+                  top: "20px",
                 }}
               >
                 Detail
-              </Link>
+              </Button>
             </Box>
           </Box>
         ))}
